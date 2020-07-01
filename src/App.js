@@ -20,10 +20,11 @@ class App extends Component {
   render() {
     return (
       <div className="App center">
-        {this.state.advanced ? <h1> Torque Calculator Advanced </h1> : <><h1> Torque Calculator Basic </h1> 
-        <p>If you know the torque coefficient of your bolts, or nuts, select "Advanced" for more accuracy.</p> </>}
-        <p><Button onClick={this.handleClick} primary>{this.state.advanced ? 'Basic' : 'Advanced'}</Button></p>
+        {this.state.advanced ? <h1> Torque Calculator Advanced </h1> : <h1> Torque Calculator Basic </h1>}
         {this.state.advanced ? <Advanced /> : <Basic />}
+        <p></p>
+        <Button color='teal'>Calculate</Button>
+        <Button onClick={this.handleClick} color='teal'>{this.state.advanced ? 'Basic' : 'Advanced'}</Button>
       </div>
     )
   }
