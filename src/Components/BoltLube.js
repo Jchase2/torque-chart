@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
-import BoltGrades from './BoltGrades';
 
 const options = [
-    { key: 0, text: 'SAE', value: 'SAE' },
-    { key: 1, text: 'ISO', value: 'ISO' },
-    { key: 2, text: 'ASTM', value: 'ASTM' },
+    { key: 0, text: 'Yes', value: 'Yes' },
+    { key: 1, text: 'No', value: 'No' },
 ]
 
-export default class GradeStandard extends Component {
+export default class BoltLube extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -23,11 +21,10 @@ export default class GradeStandard extends Component {
                 <Dropdown
                     onChange={this.handleChange}
                     options={options}
-                    placeholder='Select Standard'
+                    placeholder='Lubricated?'
                     selection
                     value={value}
                 />
-                <BoltGrades boltStandard={value}/>
             </>
         );
     }
