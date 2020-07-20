@@ -4,6 +4,7 @@ import { Dropdown } from 'semantic-ui-react'
 const options = [
     { key: 0, text: 'UNF / Fine', value: 'UNF' },
     { key: 1, text: 'UNC / Corse', value: 'UNC' },
+    {key: 2, text: 'Unknown', value: 'Unknown'},
 ]
 
 export default class BoltThread extends Component {

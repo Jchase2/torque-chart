@@ -3,7 +3,7 @@ import { Dropdown } from 'semantic-ui-react'
 import BoltGrades from './BoltGrades';
 
 const options = [
-    { key: 0, text: 'SAE', value: 'SAE' },
+    { key: 0, text: 'SAE J429', value: 'SAE' },
     { key: 1, text: 'ISO', value: 'ISO' },
     { key: 2, text: 'ASTM', value: 'ASTM' },
 ]
