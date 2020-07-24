@@ -16,12 +16,27 @@ class App extends Component {
   handleClick() {
     this.setState({ advanced: !this.state.advanced });
   }
+  handleStandardBasic(){
+    return null;
+  }
+  handleGradeBasic(){
+    return null;
+  }
+  handleSizeBasic(){
+    return null;
+  }
 
   render() {
     return (
       <div className="App center">
         {this.state.advanced ? <h1> Torque Calculator Advanced </h1> : <h1> Torque Calculator Basic </h1>}
-        {this.state.advanced ? <Advanced /> : <Basic />}
+        {this.state.advanced 
+        ? <Advanced /> : 
+        <Basic 
+          onSelectStandard={this.handleStandardBasic} 
+          onSelectGrade={this.handleGradeBasic}
+          onSelectSize={this.handleSizeBasic}
+        />}
         <p></p>
         <Button color='teal'>Calculate</Button>
         <Button onClick={this.handleClick} color='teal'>{this.state.advanced ? 'Basic' : 'Advanced'}</Button>
