@@ -3,7 +3,7 @@ import { Dropdown } from 'semantic-ui-react'
 
 const options = [
     { key: 0, text: 'UNF / Fine', value: 'UNF' },
-    { key: 1, text: 'UNC / Corse', value: 'UNC' },
+    { key: 1, text: 'UNC / Coarse', value: 'UNC' },
     {key: 2, text: 'Unknown', value: 'Unknown'},
 ]
 
