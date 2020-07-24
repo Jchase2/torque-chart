@@ -11,7 +11,7 @@ const options = [
 export default class GradeStandard extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {value: null}
     }
 
     handleChange = (e, { value }) => this.setState({ value })
