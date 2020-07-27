@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import {Button} from 'semantic-ui-react';
-import Advanced from './Components/Advanced';
 import Input from './Components/Input';
 
 class App extends Component {
@@ -23,10 +22,8 @@ class App extends Component {
   render() {
     return (
       <div className="App center">
-        {this.state.advanced ? <h1> Torque Calculator Advanced </h1> : <h1> Torque Calculator Basic </h1>}
-        {this.state.advanced 
-        ? <Advanced /> : 
-        <Input />}
+        <h1> Torque Calculator </h1>
+        <Input />
         <p></p>
         <Button onClick={this.handleClick} color='teal'>{this.state.advanced ? 'Basic' : 'Advanced'}</Button>
       </div>
