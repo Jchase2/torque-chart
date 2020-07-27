@@ -27,10 +27,6 @@ const Input = () => {
     const [grade, setGrade] = useState(null);
     const [size, setSize] = useState(null);
 
-    let handleSetStandard = () => {
-        setStandard({});
-    }
-
     return (
         <form>
             <label>
