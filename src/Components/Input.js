@@ -21,11 +21,16 @@ const boltOptionsASTM = [
     { key: 0, text: 'A307', value: 'A307' },
     { key: 1, text: 'A325 Type 1', value: 'A325 Type 1' }
 ]
+const threadingOptions = [
+    { key: 0, text: 'UNF / Fine', value: 'UNF' },
+    { key: 1, text: 'UNC / Coarse', value: 'UNC' },
+]
 
 const Input = () => {
     const [standard, setStandard] = useState(null);
     const [grade, setGrade] = useState(null);
     const [size, setSize] = useState(null);
+    const [threading, setThreading] = useState(null);
 
     return (
         <form>
@@ -82,6 +87,15 @@ const Input = () => {
                                 </Dropdown>
                             </label>
             }
+            <label>
+                <Dropdown
+                    onChange={(e, value) => setThreading(value.value)}
+                    options={threadingOptions}
+                    placeholder='Select Threading'
+                    selection
+                    value={threadingOptions.value}
+                />
+            </label>
         </form>
     )
 }
