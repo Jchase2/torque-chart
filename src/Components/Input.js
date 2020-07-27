@@ -1,6 +1,33 @@
 import React, { useState } from 'react';
 import { Dropdown, Message } from 'semantic-ui-react';
+import ResultComp from '../Components/ResultComp';
 
+const boltSizeOptions = [
+    { key: 0, text: '1/4', value: '1/4' },
+    { key: 1, text: '5/16', value: '5/16' },
+    { key: 2, text: '3/8', value: '3/8' },
+    { key: 3, text: '7/16', value: '7/16' },
+    { key: 4, text: '1/2', value: '1/2' },
+    { key: 5, text: '9/16', value: '9/16' },
+    { key: 6, text: '5/8', value: '5/8' },
+    { key: 7, text: '3/4', value: '3/4' },
+    { key: 8, text: '7/8', value: '7/8' },
+    { key: 9, text: '1', value: '1' },
+    { key: 10, text: '1 - 1/8', value: '1 - 1/8' },
+    { key: 11, text: '1 - 1/4', value: '1 - 1/4' },
+    { key: 12, text: '1 - 3/8', value: '1 - 3/8' },
+    { key: 13, text: '1 - 1/2', value: '1 - 1/2' },
+    { key: 14, text: '1 - 3/4', value: '1 - 3/4' },
+    { key: 15, text: '2', value: '2' },
+    { key: 16, text: '2 - 1/4', value: '2 - 1/4' },
+    { key: 17, text: '2 - 1/2', value: '2 - 1/2' },
+    { key: 18, text: '2 - 3/4', value: '2 - 3/4' },
+    { key: 19, text: '3', value: '3' },
+    { key: 20, text: '3 - 1/4', value: '3 - 1/4' },
+    { key: 21, text: '3 - 1/2', value: '3 - 1/2' },
+    { key: 22, text: '3 - 3/4', value: '3 - 3/4' },
+    { key: 23, text: '4', value: '4' },
+]
 const standardOptions = [
     { key: 0, text: 'SAE J429', value: 'SAE' },
     { key: 1, text: 'ISO', value: 'ISO' },
@@ -33,70 +60,83 @@ const Input = () => {
     const [threading, setThreading] = useState(null);
 
     return (
-        <form>
-            <label>
-                <Dropdown
-                    onChange={(e, value) => setStandard(value.value)}
-                    options={standardOptions}
-                    placeholder='Select Standard'
-                    selection
-                    value={standardOptions.value}
-                />
-            </label>
-            {
-                standard === "SAE" ?
-                    <label>
-                        <Dropdown
-                            onChange={(e, { value }) => setGrade({ value })}
-                            options={boltOptionsSAE}
-                            placeholder='Select Bolt Grade'
-                            selection
-                            value={boltOptionsSAE.value}
-                        />
-                    </label>
-                    : standard === "ISO" ?
+        <div>
+            <form>
+                <label>
+                    <Dropdown
+                        onChange={(e, value) => setStandard(value.value)}
+                        options={standardOptions}
+                        placeholder='Select Standard'
+                        selection
+                        value={standardOptions.value}
+                    />
+                </label>
+                {
+                    standard === "SAE" ?
                         <label>
                             <Dropdown
                                 onChange={(e, { value }) => setGrade({ value })}
-                                options={boltOptionsISO}
+                                options={boltOptionsSAE}
                                 placeholder='Select Bolt Grade'
                                 selection
-                                value={boltOptionsISO.value}
+                                value={boltOptionsSAE.value}
                             />
                         </label>
-                        : standard === "ASTM" ?
+                        : standard === "ISO" ?
                             <label>
                                 <Dropdown
                                     onChange={(e, { value }) => setGrade({ value })}
-                                    options={boltOptionsASTM}
+                                    options={boltOptionsISO}
                                     placeholder='Select Bolt Grade'
                                     selection
-                                    value={boltOptionsASTM.value}
+                                    value={boltOptionsISO.value}
                                 />
                             </label>
-                            :
-                            <label>
-                                <Dropdown placeholder='Select Bolt Grade' search selection>
-                                    <Dropdown.Menu>
-                                        <Message
-                                            error
-                                            header='Error'
-                                            content='Select Bolt Standard'
-                                        />
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </label>
-            }
-            <label>
-                <Dropdown
-                    onChange={(e, value) => setThreading(value.value)}
-                    options={threadingOptions}
-                    placeholder='Select Threading'
-                    selection
-                    value={threadingOptions.value}
-                />
-            </label>
-        </form>
+                            : standard === "ASTM" ?
+                                <label>
+                                    <Dropdown
+                                        onChange={(e, { value }) => setGrade({ value })}
+                                        options={boltOptionsASTM}
+                                        placeholder='Select Bolt Grade'
+                                        selection
+                                        value={boltOptionsASTM.value}
+                                    />
+                                </label>
+                                :
+                                <label>
+                                    <Dropdown placeholder='Select Bolt Grade' search selection>
+                                        <Dropdown.Menu>
+                                            <Message
+                                                error
+                                                header='Error'
+                                                content='Select Bolt Standard'
+                                            />
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </label>
+                }
+                <label>
+                    <Dropdown
+                        onChange={(e, value) => setThreading(value.value)}
+                        options={threadingOptions}
+                        placeholder='Select Threading'
+                        selection
+                        value={threadingOptions.value}
+                    />
+                </label>
+                <label>
+                    <Dropdown
+                        onChange={(e, value) => setSize(value.value)}
+                        placeholder='Select Bolt Size'
+                        search
+                        selection
+                        options={boltSizeOptions}
+                        value={boltSizeOptions.value}
+                    />
+                </label>
+            </form>
+            <ResultComp grade={grade} standard={standard} size={size} threading={threading} />
+        </div>
     )
 }
 
