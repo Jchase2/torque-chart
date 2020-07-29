@@ -5,11 +5,12 @@ import valuObj from '../Static/valuesObj';
 const ResultComp = (props) => {
     let size = props.size;
     let grade = props.grade;
-    // let standard = props.standard; Not used yet.
+    let standard = props.standard;
     let threading = props.threading;
     let result = null;
-    if(valuObj.size[size] && valuObj.size[size].grade[grade] && valuObj.size[size].grade[grade].threading[threading]){
-        result = valuObj.size[size].grade[grade].threading[threading];
+    if (valuObj.standard[standard] && valuObj.standard[standard].size[size] && valuObj.standard[standard].size[size].grade[grade]
+        && valuObj.standard[standard].size[size].grade[grade].threading[threading]) {
+        result = valuObj.standard[standard].size[size].grade[grade].threading[threading];
     }
 
     return (
