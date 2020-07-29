@@ -30,7 +30,7 @@ const Input = () => {
                     standard === "SAE" ?
                         <label>
                             <Dropdown
-                                onChange={(e, { value }) => setGrade({ value })}
+                                onChange={(e, { value }) => setGrade(value)}
                                 options={boltOptionsSAE}
                                 placeholder='Select Bolt Grade'
                                 selection
@@ -40,7 +40,7 @@ const Input = () => {
                         : standard === "ISO" ?
                             <label>
                                 <Dropdown
-                                    onChange={(e, { value }) => setGrade({ value })}
+                                    onChange={(e, { value }) => setGrade(value)}
                                     options={boltOptionsISO}
                                     placeholder='Select Bolt Grade'
                                     selection
@@ -50,7 +50,7 @@ const Input = () => {
                             : standard === "ASTM" ?
                                 <label>
                                     <Dropdown
-                                        onChange={(e, { value }) => setGrade({ value })}
+                                        onChange={(e, { value }) => setGrade(value)}
                                         options={boltOptionsASTM}
                                         placeholder='Select Bolt Grade'
                                         selection
