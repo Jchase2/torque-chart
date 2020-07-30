@@ -7,12 +7,14 @@ import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
 import threadingOptions from '../Static/threadingOptions';
+import lubricationOptions from '../Static/lubricationOptions';
 
 const Input = () => {
     const [standard, setStandard] = useState(null);
     const [grade, setGrade] = useState(null);
     const [size, setSize] = useState(null);
     const [threading, setThreading] = useState(null);
+    const [lube, setLube] = useState(null);
 
     return (
         <div>
@@ -89,8 +91,18 @@ const Input = () => {
                         value={boltSizeOptions.value}
                     />
                 </label>
+                <label>
+                    <Dropdown
+                        onChange={(e, value) => setLube(value.value)}
+                        placeholder='Lubricated?'
+                        search
+                        selection
+                        options={lubricationOptions}
+                        value={lubricationOptions.value}
+                    />
+                </label>
             </form>
-            <ResultComp grade={grade} standard={standard} size={size} threading={threading} />
+            <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />
         </div>
     )
 }
