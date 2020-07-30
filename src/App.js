@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App center">
         <h1> Torque Calculator </h1>
-        <Input />
+        <Input advanced={this.state.advanced}/>
         <p></p>
         <Button onClick={this.handleClick} color='teal'>{this.state.advanced ? 'Basic' : 'Advanced'}</Button>
       </div>

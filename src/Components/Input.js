@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown, Message } from 'semantic-ui-react';
 import ResultComp from '../Components/ResultComp';
+import ResultCompAdv from '../Components/ResultCompAdv';
 import boltSizeOptions from '../Static/boltSizeOptions';
 import standardOptions from '../Static/standardOptions';
 import boltOptionsSAE from '../Static/boltOptionsSAE';
@@ -9,7 +10,7 @@ import boltOptionsASTM from '../Static/boltOptionsASTM';
 import threadingOptions from '../Static/threadingOptions';
 import lubricationOptions from '../Static/lubricationOptions';
 
-const Input = () => {
+const Input = (props) => {
     const [standard, setStandard] = useState(null);
     const [grade, setGrade] = useState(null);
     const [size, setSize] = useState(null);
@@ -102,7 +103,8 @@ const Input = () => {
                     />
                 </label>
             </form>
-            <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />
+            {props.advanced === true ? <ResultCompAdv grade={grade} standard={standard} size={size} threading={threading} lube={lube} />
+            : <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />}
         </div>
     )
 }
