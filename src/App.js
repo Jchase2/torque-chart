@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import {Button} from 'semantic-ui-react';
-import Input from './Components/Input';
+import UserInput from './Components/UserInput';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App center">
         <h1> Torque Calculator </h1>
-        <Input advanced={this.state.advanced}/>
+        <UserInput advanced={this.state.advanced}/>
         <p></p>
         <Button onClick={this.handleClick} color='teal'>{this.state.advanced ? 'Basic' : 'Advanced'}</Button>
       </div>

@@ -4,7 +4,7 @@ const valuesObj = {
             'lube': {
                 'Lubricated': {
                     'size': {
-                        '1/4': {
+                        '.25': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -26,7 +26,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '5/16': {
+                        '.3125': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -48,7 +48,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '3/8': {
+                        '.375': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -70,7 +70,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '7/16': {
+                        '.4375': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -92,7 +92,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '1/2': {
+                        '.5': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -114,7 +114,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '9/16': {
+                        '.5625': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -136,7 +136,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '5/8': {
+                        '.625': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -158,7 +158,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '3/4': {
+                        '.75': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -180,7 +180,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '7/8': {
+                        '.875': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -206,7 +206,7 @@ const valuesObj = {
                 },
                 'Dry': {
                     'size': {
-                        '1/4': {
+                        '.25': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -228,7 +228,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '5/16': {
+                        '.3125': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -250,7 +250,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '3/8': {
+                        '.375': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -272,7 +272,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '7/16': {
+                        '.4375': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -294,7 +294,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '1/2': {
+                        '.5': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -316,7 +316,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '9/16': {
+                        '.5625': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -338,7 +338,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '5/8': {
+                        '.625': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -360,7 +360,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '3/4': {
+                        '.75': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
@@ -382,7 +382,7 @@ const valuesObj = {
                                 }
                             }
                         },
-                        '7/8': {
+                        '.875': {
                             'grade': {
                                 'Grade 2': {
                                     'threading': {
