@@ -16,6 +16,7 @@ const UserInput = (props) => {
     const [size, setSize] = useState(null);
     const [threading, setThreading] = useState(null);
     const [lube, setLube] = useState(null);
+    const [threadsPerInch, setThreadsPerInch] = useState(null);
 
     return (
         <div>
@@ -73,15 +74,19 @@ const UserInput = (props) => {
                                     </Dropdown>
                                 </label>
                 }
-                <label>
-                    <Dropdown
-                        onChange={(e, value) => setThreading(value.value)}
-                        options={threadingOptions}
-                        placeholder='Select Threading'
-                        selection
-                        value={threadingOptions.value}
-                    />
-                </label>
+                {
+                    !props.advanced ?
+                        <label>
+                            <Dropdown
+                                onChange={(e, value) => setThreading(value.value)}
+                                options={threadingOptions}
+                                placeholder='Select Threading'
+                                selection
+                                value={threadingOptions.value}
+                            />
+                        </label>
+                        : null
+                }
                 <label>
                     <Dropdown
                         onChange={(e, value) => setSize(value.value)}
@@ -102,8 +107,14 @@ const UserInput = (props) => {
                         value={lubricationOptions.value}
                     />
                 </label>
+                <label>
+                    {props.advanced ?
+                        <Input threadsPerInch={threadsPerInch} placeholder='Threads Per Inch' onChange={(e, value) => setThreadsPerInch(value.value)} />
+                        : null}
+                </label>
             </form>
-            {props.advanced === true ? <ResultCompAdv grade={grade} standard={standard} size={size} threading={threading} lube={lube} />
+            {props.advanced === true ?
+                <ResultCompAdv grade={grade} standard={standard} size={size} threading={threading} lube={lube} threadsPerInch={threadsPerInch} />
                 : <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />}
         </div>
     )
