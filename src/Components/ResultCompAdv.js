@@ -9,8 +9,16 @@ const ResultCompAdv = (props) => {
     }
     const calcClampForce = () => {
         let proofLoad = null;
-        parseFloat(props.size) < .875 ? proofLoad = 55000 : proofLoad = 33000;
-        return (.75 * proofLoad * threadTensileStress());  
+        if (props.grade === 'Grade 2') {
+            parseFloat(props.size) < .875 ? proofLoad = 55000 : proofLoad = 33000;
+        }
+        else if (props.grade === 'Grade 5') {
+            parseFloat(props.size) < 1.5 ? proofLoad = 85000 : proofLoad = 74000;
+        }
+        else {
+            proofLoad = 120000;
+        }
+        return (.75 * proofLoad * threadTensileStress());
     }
     const calcTorque = () => {
         let K = null;
@@ -20,16 +28,16 @@ const ResultCompAdv = (props) => {
         D = parseFloat(props.size);
         return (K * D * F);
     }
-    if(props.size && props.threadsPerInch){
+    if (props.size && props.threadsPerInch) {
         result = calcTorque();
     }
     return (
         <div class="top-space">
-            {result != null ? <h3>Recommended Bolt Torque: {isNaN(result) ? "Please enter numerical values" 
-            : Math.round(result * 1000) / 1000 + " inch-lbs" + " / " + Math.round((result / 12) * 1000) / 1000 + " foot-lbs"}</h3> : <p></p>}
+            {result != null ? <h3>Recommended Bolt Torque: {isNaN(result) ? "Please enter numerical values"
+                : Math.round(result * 1000) / 1000 + " inch-lbs" + " / " + Math.round((result / 12) * 1000) / 1000 + " foot-lbs"}</h3> : <p></p>}
             <p>Notes: This is a reference calculator, do not rely on this alone, as variables may differ from
-                manufacturer to manufacturer, real world conditions, etc.</p>
-            <p>Lubricated: K=0.15, Dry: K=0.20 </p>
+                manufacturer to manufacturer, real world conditions, etc. <br /> Basic is based on various charts from manufacturers,
+                advanced uses calculations like T = KDF, etc. <br /> Lubricated: K=0.15, Dry: K=0.20 </p>
         </div>
     );
 
