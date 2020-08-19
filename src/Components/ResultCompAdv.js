@@ -37,7 +37,7 @@ const ResultCompAdv = (props) => {
                 : Math.round(result * 1000) / 1000 + " inch-lbs" + " / " + Math.round((result / 12) * 1000) / 1000 + " foot-lbs"}</h3> : <p></p>}
             <p>Notes: This is a reference calculator, do not rely on this alone, as variables may differ from
                 manufacturer to manufacturer, real world conditions, etc. <br /> Basic is based on various charts from manufacturers,
-                advanced uses calculations like T = KDF, etc. <br /> Lubricated: K=0.15, Dry: K=0.20 </p>
+                advanced uses calculations like T = KDF, etc. It also allows more user input. <br /> Lubricated: K=0.15, Dry: K=0.20 </p>
         </div>
     );
 
