@@ -201,7 +201,117 @@ const valuesObj = {
                                     }
                                 }
                             }
-                        }
+                        }, 
+                        '1': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '190 ft-lbs',
+                                        'UNF': '200 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '480 ft-lbs',
+                                        'UNF': '530 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '680 ft-lbs',
+                                        'UNF': '740 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.125': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '270 ft-lbs',
+                                        'UNF': '300 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '600 ft-lbs',
+                                        'UNF': '660 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '960 ft-lbs',
+                                        'UNF': '1080 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.25': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '380 ft-lbs',
+                                        'UNF': '420 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '840 ft-lbs',
+                                        'UNF': '920 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '1360 ft-lbs',
+                                        'UNF': '1500 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.375': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '490 ft-lbs',
+                                        'UNF': '560 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '1100 ft-lbs',
+                                        'UNF': '1260 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '1780 ft-lbs',
+                                        'UNF': '2040 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.5': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '650 ft-lbs',
+                                        'UNF': '730 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '1460 ft-lbs',
+                                        'UNF': '1640 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '2360 ft-lbs',
+                                        'UNF': '2660 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
                     }
                 },
                 'Dry': {
@@ -403,7 +513,117 @@ const valuesObj = {
                                     }
                                 }
                             }
-                        }
+                        },
+                        '1': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '250 ft-lbs',
+                                        'UNF': '270 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '640 ft-lbs',
+                                        'UNF': '700 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '900 ft-lbs',
+                                        'UNF': '1000 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.125': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '350 ft-lbs',
+                                        'UNF': '400 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '800 ft-lbs',
+                                        'UNF': '880 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '1280 ft-lbs',
+                                        'UNF': '1440 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.25': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '500 ft-lbs',
+                                        'UNF': '550 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '1120 ft-lbs',
+                                        'UNF': '1240 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '1820 ft-lbs',
+                                        'UNF': '2000 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.375': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '660 ft-lbs',
+                                        'UNF': '740 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '1460 ft-lbs',
+                                        'UNF': '1680 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '2380 ft-lbs',
+                                        'UNF': '2720 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
+                        '1.5': {
+                            'grade': {
+                                'Grade 2': {
+                                    'threading': {
+                                        'UNC': '870 ft-lbs',
+                                        'UNF': '980 ft-lbs'
+                                    }
+                                },
+                                'Grade 5': {
+                                    'threading': {
+                                        'UNC': '1940 ft-lbs',
+                                        'UNF': '2200 ft-lbs'
+                                    }
+                                },
+                                'Grade 8': {
+                                    'threading': {
+                                        'UNC': '3160 ft-lbs',
+                                        'UNF': '3560 ft-lbs'
+                                    }
+                                }
+                            }
+                        },
                     }
                 }
             }
