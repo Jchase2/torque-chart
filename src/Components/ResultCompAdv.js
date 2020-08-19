@@ -24,7 +24,7 @@ const ResultCompAdv = (props) => {
         let K = null;
         let D = null;
         let F = calcClampForce();
-        props.lube === 'Lubricated' ? K = 0.15 : K = 0.20;
+        props.lube === 'Lubricated' ? K = 0.15 : props.lube === 'Dry' ?  K = 0.20 : K = props.customLube;
         D = parseFloat(props.size);
         return (K * D * F);
     }
