@@ -15,6 +15,9 @@ const ResultComp = (props) => {
         && valuObj.standard[standard].lube[lube].size[size].grade[grade].threading[threading]) {
         result = valuObj.standard[standard].lube[lube].size[size].grade[grade].threading[threading];
     }
+    if(size > 1.5){
+        result = "Please use the advanced torque calculator for bolt diameters greater than 1 - 1/2 inches."
+    }
 
     return (
         <div class="top-space">
