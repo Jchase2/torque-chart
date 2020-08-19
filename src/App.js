@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
-import {Button} from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 import UserInput from './Components/UserInput';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      advanced: false,
-      standard: null,
-      grade: null,
-      size: null,
-    };
+    this.state = { advanced: false };
   }
 
   handleClick() {
@@ -21,12 +16,14 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App center">
+      <Grid container>
+      <div className="center">
         <h1> Torque Calculator </h1>
-        <UserInput advanced={this.state.advanced}/>
+        <UserInput advanced={this.state.advanced} />
         <p></p>
         <Button onClick={this.handleClick} color='teal'>{this.state.advanced ? 'Basic' : 'Advanced'}</Button>
       </div>
+      </Grid>
     )
   }
 }
