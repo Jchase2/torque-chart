@@ -15,6 +15,9 @@ const ResultCompAdv = (props) => {
         else if (props.grade === 'Grade 5') {
             parseFloat(props.size) < 1.5 ? proofLoad = 85000 : proofLoad = 74000;
         }
+        else if(props.grade === 'Grade 7'){
+            proofLoad = 105000;
+        }
         else {
             proofLoad = 120000;
         }
