@@ -10,6 +10,8 @@ import boltOptionsASTM from '../Static/boltOptionsASTM';
 import threadingOptions from '../Static/threadingOptions';
 import lubricationOptions from '../Static/lubricationOptions';
 import lubricationOptionsAdv from '../Static/lubricationOptionsAdv';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 const UserInput = (props) => {
     const [standard, setStandard] = useState(null);
@@ -27,7 +29,7 @@ const UserInput = (props) => {
                     <Dropdown
                         onChange={(e, value) => setStandard(value.value)}
                         options={standardOptions}
-                        placeholder='Select Standard'
+                        placeholder = 'Select Standard'
                         selection
                         value={standardOptions.value}
                     />

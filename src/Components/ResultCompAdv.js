@@ -9,13 +9,13 @@ const ResultCompAdv = (props) => {
     }
     const calcClampForce = () => {
         let proofLoad = null;
-        if (props.grade === 'Grade 2') {
+        if (props.grade === 'grade2') {
             parseFloat(props.size) < .875 ? proofLoad = 55000 : proofLoad = 33000;
         }
-        else if (props.grade === 'Grade 5') {
+        else if (props.grade === 'grade5') {
             parseFloat(props.size) < 1.5 ? proofLoad = 85000 : proofLoad = 74000;
         }
-        else if(props.grade === 'Grade 7'){
+        else if(props.grade === 'grade7'){
             proofLoad = 105000;
         }
         else {
