@@ -6,7 +6,7 @@ A bolt torque calculator. It has two modes: Basic and Advanced. Basic uses data 
 
 Create react app, and it's various components, along with semantic-ui. (Well, react-semantic-ui anyways). 
 Also, using query-strings and react-router to get query strings in the URL as an API. Not sure if anyone 
-is interested in using this from another application but it'd nice to provide that anyway.  
+is interested in using this from another application but it's nice to provide that anyway.  
 
 ## Why? 
 
