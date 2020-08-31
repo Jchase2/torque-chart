@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
-import ResultComp from './ResultComp';
+import ResultCompAdv from './ResultCompAdv';
 import boltSizeOptions from '../Static/boltSizeOptions';
 import standardOptions from '../Static/standardOptions';
 import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
-import threadingOptions from '../Static/threadingOptions';
-import lubricationOptions from '../Static/lubricationOptions';
+import lubricationOptionsAdv from '../Static/lubricationOptionsAdv';
 
 const UserInput = (props) => {
     const [standard, setStandard] = useState(null);
     const [grade, setGrade] = useState(null);
     const [size, setSize] = useState(null);
-    const [threading, setThreading] = useState(null);
     const [lube, setLube] = useState(null);
     const [customLube, setCustomLube] = useState(null);
+    const [threadsPerInch, setThreadsPerInch] = useState(null);
 
     return (
         <div>
@@ -75,15 +74,6 @@ const UserInput = (props) => {
                 }
                 <label>
                     <Dropdown
-                        onChange={(e, value) => setThreading(value.value)}
-                        options={threadingOptions}
-                        placeholder='Select Threading'
-                        selection
-                        value={threadingOptions.value}
-                    />
-                </label>
-                <label>
-                    <Dropdown
                         onChange={(e, value) => setSize(value.value)}
                         placeholder='Select Bolt Size'
                         search
@@ -98,9 +88,12 @@ const UserInput = (props) => {
                         placeholder='Lubricated?'
                         search
                         selection
-                        options={lubricationOptions}
-                        value={lubricationOptions.value}
+                        options={lubricationOptionsAdv}
+                        value={lubricationOptionsAdv.value}
                     />
+                </label>
+                <label>
+                    <Input threadsPerInch={threadsPerInch} placeholder='Threads Per Inch' onChange={(e, value) => setThreadsPerInch(value.value)} />
                 </label>
                 <label>
                     {lube === 'Custom' ?
@@ -108,7 +101,8 @@ const UserInput = (props) => {
                         : null}
                 </label>
             </form>
-            <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />
+            <ResultCompAdv grade={grade} standard={standard} size={size} lube={lube} threadsPerInch={threadsPerInch}
+                customLube={customLube} />
         </div>
     )
 }
