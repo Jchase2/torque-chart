@@ -21,7 +21,7 @@ function App(props) {
   return (
     <Grid container>
       <div className="center">
-        {location.pathname === "/" ? <h1>Torque Calculator Basic </h1> : <h1> Torque Calculator Advanced </h1>}
+        {!advanced ? <h1>Torque Calculator Basic </h1> : <h1> Torque Calculator Advanced </h1>}
         <Route exact path="/" component={UserInput} />
         <Route path="/advanced" component={UserInputAdvanced} />
         <p></p>
