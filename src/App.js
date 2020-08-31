@@ -25,8 +25,8 @@ function App(props) {
         <Route exact path="/" component={UserInput} />
         <Route path="/advanced" component={UserInputAdvanced} />
         <p></p>
-        {advanced ? <Link to="/"><Button onClick={handleClick} color='teal'>{location.pathname === "/advanced" ? 'Basic' : 'Advanced'}</Button>
-        </Link> : <Link to="advanced"><Button onClick={handleClick} color='teal'>{location.pathname === "/" ? 'Advanced' : 'Basic'}</Button>
+        {advanced ? <Link to="/"><Button onClick={handleClick} color='teal'>{advanced ? 'Basic' : 'Advanced'}</Button>
+        </Link> : <Link to="advanced"><Button onClick={handleClick} color='teal'>{!advanced ? 'Advanced' : 'Basic'}</Button>
           </Link>}
       </div>
     </Grid>
