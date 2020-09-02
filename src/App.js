@@ -17,8 +17,8 @@ function App(props) {
 
   let handleClick = () => { setAdvanced(!advanced)}
   return (
-    <Grid container>
-      <div className="center">
+    <Grid centered>
+      <div className="center-top">
         {!advanced ? <h1>Torque Calculator Basic </h1> : <h1> Torque Calculator Advanced </h1>}
         <Route exact path="/" component={UserInput} />
         <Route path="/advanced" component={UserInputAdvanced} />

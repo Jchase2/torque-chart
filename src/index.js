@@ -7,7 +7,7 @@ import Store from './Components/Store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/torque">
       <Store>
         <App />
       </Store>
