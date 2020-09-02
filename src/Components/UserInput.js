@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
 import ResultComp from './ResultComp';
 import boltSizeOptions from '../Static/boltSizeOptions';
@@ -8,25 +8,27 @@ import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
 import threadingOptions from '../Static/threadingOptions';
 import lubricationOptions from '../Static/lubricationOptions';
+import {standardContext, gradeContext, sizeContext, threadingContext, 
+    lubeContext, customLubeContext} from './Store';
 
 const UserInput = (props) => {
-    const [standard, setStandard] = useState(null);
-    const [grade, setGrade] = useState(null);
-    const [size, setSize] = useState(null);
-    const [threading, setThreading] = useState(null);
-    const [lube, setLube] = useState(null);
-    const [customLube, setCustomLube] = useState(null);
+    const [standard, setStandard] = useContext(standardContext);
+    const [grade, setGrade] = useContext(gradeContext);
+    const [size, setSize] = useContext(sizeContext);
+    const [threading, setThreading] = useContext(threadingContext);
+    const [lube, setLube] = useContext(lubeContext);
+    const [customLube, setCustomLube] = useContext(customLubeContext);
 
     return (
         <div>
             <form>
                 <label>
                     <Dropdown
+                        value={standard}
                         onChange={(e, value) => { setStandard(value.value) }}
                         options={standardOptions}
                         placeholder='Select Standard'
                         selection
-                        value={standardOptions.value}
                     />
                 </label>
                 {
@@ -37,7 +39,7 @@ const UserInput = (props) => {
                                 options={boltOptionsSAE}
                                 placeholder='Select Bolt Grade'
                                 selection
-                                value={boltOptionsSAE.value}
+                                value={grade}
                             />
                         </label>
                         : standard === "ISO" ?
@@ -47,7 +49,7 @@ const UserInput = (props) => {
                                     options={boltOptionsISO}
                                     placeholder='Select Bolt Grade'
                                     selection
-                                    value={boltOptionsISO.value}
+                                    value={grade}
                                 />
                             </label>
                             : standard === "ASTM" ?
@@ -57,7 +59,7 @@ const UserInput = (props) => {
                                         options={boltOptionsASTM}
                                         placeholder='Select Bolt Grade'
                                         selection
-                                        value={boltOptionsASTM.value}
+                                        value={grade}
                                     />
                                 </label>
                                 :
@@ -79,7 +81,7 @@ const UserInput = (props) => {
                         options={threadingOptions}
                         placeholder='Select Threading'
                         selection
-                        value={threadingOptions.value}
+                        value={threading}
                     />
                 </label>
                 <label>
@@ -89,7 +91,7 @@ const UserInput = (props) => {
                         search
                         selection
                         options={boltSizeOptions}
-                        value={boltSizeOptions.value}
+                        value={size}
                     />
                 </label>
                 <label>
@@ -99,12 +101,12 @@ const UserInput = (props) => {
                         search
                         selection
                         options={lubricationOptions}
-                        value={lubricationOptions.value}
+                        value={lube}
                     />
                 </label>
                 <label>
                     {lube === 'Custom' ?
-                        <Input customLube={customLube} placeholder='Custom K Value' onChange={(e, value) => setCustomLube(value.value)} />
+                        <Input customLube={customLube} value={customLube} placeholder='Custom K Value' onChange={(e, value) => setCustomLube(value.value)} />
                         : null}
                 </label>
             </form>

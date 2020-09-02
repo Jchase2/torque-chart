@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
 import ResultCompAdv from './ResultCompAdv';
 import boltSizeOptions from '../Static/boltSizeOptions';
@@ -7,14 +7,16 @@ import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
 import lubricationOptionsAdv from '../Static/lubricationOptionsAdv';
+import {standardContext, gradeContext, sizeContext, 
+    lubeContext, customLubeContext, threadsPerInchContext} from './Store';
 
 const UserInput = (props) => {
-    const [standard, setStandard] = useState(null);
-    const [grade, setGrade] = useState(null);
-    const [size, setSize] = useState(null);
-    const [lube, setLube] = useState(null);
-    const [customLube, setCustomLube] = useState(null);
-    const [threadsPerInch, setThreadsPerInch] = useState(null);
+    const [standard, setStandard] = useContext(standardContext);
+    const [grade, setGrade] = useContext(gradeContext);
+    const [size, setSize] = useContext(sizeContext);
+    const [lube, setLube] = useContext(lubeContext);
+    const [customLube, setCustomLube] = useContext(customLubeContext);
+    const [threadsPerInch, setThreadsPerInch] = useContext(threadsPerInchContext);
 
     return (
         <div>
@@ -25,7 +27,7 @@ const UserInput = (props) => {
                         options={standardOptions}
                         placeholder='Select Standard'
                         selection
-                        value={standardOptions.value}
+                        value={standard}
                     />
                 </label>
                 {
@@ -36,7 +38,7 @@ const UserInput = (props) => {
                                 options={boltOptionsSAE}
                                 placeholder='Select Bolt Grade'
                                 selection
-                                value={boltOptionsSAE.value}
+                                value={grade}
                             />
                         </label>
                         : standard === "ISO" ?
@@ -46,7 +48,7 @@ const UserInput = (props) => {
                                     options={boltOptionsISO}
                                     placeholder='Select Bolt Grade'
                                     selection
-                                    value={boltOptionsISO.value}
+                                    value={grade}
                                 />
                             </label>
                             : standard === "ASTM" ?
@@ -56,7 +58,7 @@ const UserInput = (props) => {
                                         options={boltOptionsASTM}
                                         placeholder='Select Bolt Grade'
                                         selection
-                                        value={boltOptionsASTM.value}
+                                        value={grade}
                                     />
                                 </label>
                                 :
@@ -79,7 +81,7 @@ const UserInput = (props) => {
                         search
                         selection
                         options={boltSizeOptions}
-                        value={boltSizeOptions.value}
+                        value={size}
                     />
                 </label>
                 <label>
@@ -89,15 +91,17 @@ const UserInput = (props) => {
                         search
                         selection
                         options={lubricationOptionsAdv}
-                        value={lubricationOptionsAdv.value}
+                        value={lube}
                     />
                 </label>
                 <label>
-                    <Input threadsPerInch={threadsPerInch} placeholder='Threads Per Inch' onChange={(e, value) => setThreadsPerInch(value.value)} />
+                    <Input threadsPerInch={threadsPerInch} value={threadsPerInch} 
+                    placeholder='Threads Per Inch' onChange={(e, value) => setThreadsPerInch(value.value)} />
                 </label>
                 <label>
                     {lube === 'Custom' ?
-                        <Input customLube={customLube} placeholder='Custom K Value' onChange={(e, value) => setCustomLube(value.value)} />
+                        <Input customLube={customLube} value={customLube} 
+                        placeholder='Custom K Value' onChange={(e, value) => setCustomLube(value.value)} />
                         : null}
                 </label>
             </form>

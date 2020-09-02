@@ -15,9 +15,7 @@ function App(props) {
 
   const [advanced, setAdvanced] = useState(returnInitialURL);
 
-  let handleClick = () => {
-    setAdvanced(!advanced);
-  }
+  let handleClick = () => { setAdvanced(!advanced)}
   return (
     <Grid container>
       <div className="center">
