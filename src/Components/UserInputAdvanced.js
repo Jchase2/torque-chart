@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
 import ResultCompAdv from './ResultCompAdv';
 import boltSizeOptions from '../Static/boltSizeOptions';
@@ -7,8 +8,10 @@ import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
 import lubricationOptionsAdv from '../Static/lubricationOptionsAdv';
-import {standardContext, gradeContext, sizeContext, 
-    lubeContext, customLubeContext, threadsPerInchContext} from './Store';
+import {
+    standardContext, gradeContext, sizeContext,
+    lubeContext, customLubeContext, threadsPerInchContext
+} from './Store';
 
 const UserInput = (props) => {
     const [standard, setStandard] = useContext(standardContext);
@@ -18,47 +21,85 @@ const UserInput = (props) => {
     const [customLube, setCustomLube] = useContext(customLubeContext);
     const [threadsPerInch, setThreadsPerInch] = useContext(threadsPerInchContext);
 
+    const { search } = useLocation()
+    const searchParams = new URLSearchParams(search);
+    const standardURL = searchParams.get('standard');
+    const gradeURL = searchParams.get('grade');
+    const sizeURL = searchParams.get('size');
+    const lubeURL = searchParams.get('lube');
+    const customLubeURL = searchParams.get('customLube');
+    const threadsPerInchURL = searchParams.get('threadsPerInch');
+
+    if (standardURL) { setStandard(standardURL) };
+    if (gradeURL) { setGrade(gradeURL) };
+    if (sizeURL) { setSize(sizeURL) };
+    if (lubeURL) { setLube(lubeURL) };
+    if (customLubeURL) { setCustomLube(customLubeURL) };
+    if (threadsPerInchURL) { setThreadsPerInch(threadsPerInchURL) };
+
+    const updateQuery = (value, queryName, updateMethod) => {
+        if (!search) {
+            props.history.push({
+                pathname: '/advanced',
+                search: queryName + '=' + value
+            })
+        }
+        else if (!searchParams.has(queryName)) {
+            props.history.push(search + '&' + queryName + '=' + value)
+        }
+        else if (searchParams.has(queryName) && searchParams.get(queryName) !== value) {
+            let replaceMe = queryName + '=' + searchParams.get(queryName);
+            var reg = new RegExp(replaceMe, "g");
+            let qString = search.replace(reg, queryName + '=' + value);
+            props.history.push({
+                pathname: '/advanced',
+                search: qString
+            })
+        }
+        updateMethod(value);
+    }
+
     return (
         <div>
             <form>
                 <label>
                     <Dropdown
-                        onChange={(e, value) => { setStandard(value.value) }}
+                        value={standard}
+                        onChange={(e, value) => updateQuery(value.value, 'standard', setStandard)}
                         options={standardOptions}
                         placeholder='Select Standard'
                         selection
-                        value={standard}
                     />
                 </label>
                 {
                     standard === "SAE" ?
                         <label>
                             <Dropdown
-                                onChange={(e, { value }) => setGrade(value)}
+                                value={grade}
+                                onChange={(e, value) => updateQuery(value.value, 'grade', setGrade)}
                                 options={boltOptionsSAE}
                                 placeholder='Select Bolt Grade'
                                 selection
-                                value={grade}
                             />
                         </label>
                         : standard === "ISO" ?
                             <label>
                                 <Dropdown
-                                    onChange={(e, { value }) => setGrade(value)}
+                                    value={grade}
+                                    onChange={(e, value) => updateQuery(value.value, 'grade', setGrade)}
                                     options={boltOptionsISO}
                                     placeholder='Select Bolt Grade'
                                     selection
-                                    value={grade}
                                 />
                             </label>
                             : standard === "ASTM" ?
                                 <label>
                                     <Dropdown
-                                        onChange={(e, { value }) => setGrade(value)}
+                                        value={grade}
+                                        onChange={(e, value) => updateQuery(value.value, 'grade', setGrade)}
                                         options={boltOptionsASTM}
                                         placeholder='Select Bolt Grade'
                                         selection
-                                        value={grade}
                                     />
                                 </label>
                                 :
@@ -76,32 +117,32 @@ const UserInput = (props) => {
                 }
                 <label>
                     <Dropdown
-                        onChange={(e, value) => setSize(value.value)}
+                        value={size}
+                        onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
                         placeholder='Select Bolt Size'
                         search
                         selection
                         options={boltSizeOptions}
-                        value={size}
                     />
                 </label>
                 <label>
                     <Dropdown
-                        onChange={(e, value) => setLube(value.value)}
+                        value={lube}
+                        onChange={(e, value) => updateQuery(value.value, 'lube', setLube)}
                         placeholder='Lubricated?'
                         search
                         selection
                         options={lubricationOptionsAdv}
-                        value={lube}
                     />
                 </label>
                 <label>
-                    <Input threadsPerInch={threadsPerInch} value={threadsPerInch} 
-                    placeholder='Threads Per Inch' onChange={(e, value) => setThreadsPerInch(value.value)} />
+                    <Input threadsPerInch={threadsPerInch} value={threadsPerInch}
+                        placeholder='Threads Per Inch' onChange={(e, value) => updateQuery(value.value, 'threadsPerInch', setThreadsPerInch)} />
                 </label>
                 <label>
                     {lube === 'Custom' ?
-                        <Input customLube={customLube} value={customLube} 
-                        placeholder='Custom K Value' onChange={(e, value) => setCustomLube(value.value)} />
+                        <Input customLube={customLube} value={customLube}
+                            placeholder='Custom K Value' onChange={(e, value) => updateQuery(value.value, 'customLube', setCustomLube)} />
                         : null}
                 </label>
             </form>

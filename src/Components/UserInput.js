@@ -31,11 +31,11 @@ const UserInput = (props) => {
     const lubeURL = searchParams.get('lube');
     const customLubeURL = searchParams.get('customLube');
     if (standardURL) { setStandard(standardURL); }
-    if (gradeURL) { setGrade(gradeURL); }
-    if (sizeURL) { setSize(sizeURL); }
-    if (threadingURL) { setThreading(threadingURL); }
-    if (lubeURL) { setLube(lubeURL); }
-    if (customLubeURL) { setCustomLube(customLubeURL); }
+    if (gradeURL) { setGrade(gradeURL)};
+    if (sizeURL) { setSize(sizeURL)};
+    if (threadingURL) { setThreading(threadingURL)};
+    if (lubeURL) { setLube(lubeURL)};
+    if (customLubeURL) { setCustomLube(customLubeURL)};
 
     const updateQuery = (value, queryName, updateMethod) => {
         if (!search) {
@@ -47,10 +47,10 @@ const UserInput = (props) => {
         else if (!searchParams.has(queryName)) {
             props.history.push(search + '&' + queryName + '=' + value)
         }
-        else if(searchParams.has(queryName) && searchParams.get(queryName) !== value){
-            let replaceMe = searchParams.get(queryName);
+        else if (searchParams.has(queryName) && searchParams.get(queryName) !== value) {
+            let replaceMe = queryName + '=' + searchParams.get(queryName);
             var reg = new RegExp(replaceMe, "g");
-            let qString = search.replace(reg, value);
+            let qString = search.replace(reg, queryName + '=' + value);
             props.history.push({
                 pathname: '/',
                 search: qString
