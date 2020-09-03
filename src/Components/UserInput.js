@@ -15,6 +15,7 @@ import {
 } from './Store';
 
 const UserInput = (props) => {
+    // Context API / hooks store and variables. 
     const [standard, setStandard] = useContext(standardContext);
     const [grade, setGrade] = useContext(gradeContext);
     const [size, setSize] = useContext(sizeContext);
@@ -22,6 +23,7 @@ const UserInput = (props) => {
     const [lube, setLube] = useContext(lubeContext);
     const [customLube, setCustomLube] = useContext(customLubeContext);
 
+    // Setting up query string searching. 
     const { search } = useLocation()
     const searchParams = new URLSearchParams(search);
     const standardURL = searchParams.get('standard');
@@ -30,6 +32,8 @@ const UserInput = (props) => {
     const threadingURL = searchParams.get('threading');
     const lubeURL = searchParams.get('lube');
     const customLubeURL = searchParams.get('customLube');
+    
+    // If query string exists, set those variables in the store. 
     if (standardURL) { setStandard(standardURL); }
     if (gradeURL) { setGrade(gradeURL)};
     if (sizeURL) { setSize(sizeURL)};
@@ -37,6 +41,7 @@ const UserInput = (props) => {
     if (lubeURL) { setLube(lubeURL)};
     if (customLubeURL) { setCustomLube(customLubeURL)};
 
+    // Function for updating the query string. 
     const updateQuery = (value, queryName, updateMethod) => {
         if (!search) {
             props.history.push({
@@ -58,6 +63,15 @@ const UserInput = (props) => {
         }
         updateMethod(value);
     }
+
+    // If values are already in the store, update the query string with 
+    // said values. 
+    if(standard){updateQuery(standard, 'standard', setStandard)};
+    if(grade){updateQuery(grade, 'grade', setGrade)};
+    if(size){updateQuery(size, 'size', setSize)};
+    if(threading){updateQuery(threading, 'threading', setThreading)};
+    if(lube){updateQuery(lube, 'lube', setLube)};
+    if(customLube){updateQuery(customLube, 'customLube', setCustomLube)}
 
     return (
         <div>
