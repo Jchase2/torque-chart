@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
 import ResultComp from './ResultComp';
 import boltSizeOptions from '../Static/boltSizeOptions';
@@ -8,8 +9,10 @@ import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
 import threadingOptions from '../Static/threadingOptions';
 import lubricationOptions from '../Static/lubricationOptions';
-import {standardContext, gradeContext, sizeContext, threadingContext, 
-    lubeContext, customLubeContext} from './Store';
+import {
+    standardContext, gradeContext, sizeContext, threadingContext,
+    lubeContext, customLubeContext
+} from './Store';
 
 const UserInput = (props) => {
     const [standard, setStandard] = useContext(standardContext);
@@ -18,6 +21,23 @@ const UserInput = (props) => {
     const [threading, setThreading] = useContext(threadingContext);
     const [lube, setLube] = useContext(lubeContext);
     const [customLube, setCustomLube] = useContext(customLubeContext);
+
+    const { search } = useLocation()
+    const searchParams = new URLSearchParams(search);
+    const standardURL = searchParams.get('standard');
+    const gradeURL = searchParams.get('grade');
+    const sizeURL = searchParams.get('size');
+    const threadingURL = searchParams.get('threading');
+    const lubeURL = searchParams.get('lube');
+    const customLubeURL = searchParams.get('customLube');
+    if(standardURL){setStandard(standardURL);}
+    if(gradeURL){setGrade(gradeURL);}
+    if(sizeURL){setSize(sizeURL);}
+    if(threadingURL){setThreading(threadingURL);}
+    if(lubeURL){setLube(lubeURL);}
+    if(customLubeURL){setCustomLube(customLubeURL);}
+
+    console.log(searchParams.get('grade'));
 
     return (
         <div>
