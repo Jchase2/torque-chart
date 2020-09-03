@@ -30,14 +30,34 @@ const UserInput = (props) => {
     const threadingURL = searchParams.get('threading');
     const lubeURL = searchParams.get('lube');
     const customLubeURL = searchParams.get('customLube');
-    if(standardURL){setStandard(standardURL);}
-    if(gradeURL){setGrade(gradeURL);}
-    if(sizeURL){setSize(sizeURL);}
-    if(threadingURL){setThreading(threadingURL);}
-    if(lubeURL){setLube(lubeURL);}
-    if(customLubeURL){setCustomLube(customLubeURL);}
+    if (standardURL) { setStandard(standardURL); }
+    if (gradeURL) { setGrade(gradeURL); }
+    if (sizeURL) { setSize(sizeURL); }
+    if (threadingURL) { setThreading(threadingURL); }
+    if (lubeURL) { setLube(lubeURL); }
+    if (customLubeURL) { setCustomLube(customLubeURL); }
 
-    console.log(searchParams.get('grade'));
+    const updateQuery = (value, queryName, updateMethod) => {
+        if (!search) {
+            props.history.push({
+                pathname: '/',
+                search: queryName + '=' + value
+            })
+        }
+        else if (!searchParams.has(queryName)) {
+            props.history.push(search + '&' + queryName + '=' + value)
+        }
+        else if(searchParams.has(queryName) && searchParams.get(queryName) !== value){
+            let replaceMe = searchParams.get(queryName);
+            var reg = new RegExp(replaceMe, "g");
+            let qString = search.replace(reg, value);
+            props.history.push({
+                pathname: '/',
+                search: qString
+            })
+        }
+        updateMethod(value);
+    }
 
     return (
         <div>
@@ -45,7 +65,7 @@ const UserInput = (props) => {
                 <label>
                     <Dropdown
                         value={standard}
-                        onChange={(e, value) => { setStandard(value.value) }}
+                        onChange={(e, value) => updateQuery(value.value, 'standard', setStandard) }
                         options={standardOptions}
                         placeholder='Select Standard'
                         selection
@@ -55,31 +75,31 @@ const UserInput = (props) => {
                     standard === "SAE" ?
                         <label>
                             <Dropdown
-                                onChange={(e, { value }) => setGrade(value)}
+                                value={grade}
+                                onChange={(e, value) => updateQuery(value.value, 'grade', setGrade)}
                                 options={boltOptionsSAE}
                                 placeholder='Select Bolt Grade'
                                 selection
-                                value={grade}
                             />
                         </label>
                         : standard === "ISO" ?
                             <label>
                                 <Dropdown
-                                    onChange={(e, { value }) => setGrade(value)}
+                                    value={grade}
+                                    onChange={(e, value) => updateQuery(value.value, 'grade', setGrade)}
                                     options={boltOptionsISO}
                                     placeholder='Select Bolt Grade'
                                     selection
-                                    value={grade}
                                 />
                             </label>
                             : standard === "ASTM" ?
                                 <label>
                                     <Dropdown
-                                        onChange={(e, { value }) => setGrade(value)}
+                                        value={grade}
+                                        onChange={(e, value) => updateQuery(value.value, 'grade', setGrade)}
                                         options={boltOptionsASTM}
                                         placeholder='Select Bolt Grade'
                                         selection
-                                        value={grade}
                                     />
                                 </label>
                                 :
@@ -97,7 +117,7 @@ const UserInput = (props) => {
                 }
                 <label>
                     <Dropdown
-                        onChange={(e, value) => setThreading(value.value)}
+                        onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
                         options={threadingOptions}
                         placeholder='Select Threading'
                         selection
@@ -106,7 +126,7 @@ const UserInput = (props) => {
                 </label>
                 <label>
                     <Dropdown
-                        onChange={(e, value) => setSize(value.value)}
+                        onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
                         placeholder='Select Bolt Size'
                         search
                         selection
@@ -116,7 +136,7 @@ const UserInput = (props) => {
                 </label>
                 <label>
                     <Dropdown
-                        onChange={(e, value) => setLube(value.value)}
+                        onChange={(e, value) => updateQuery(value.value, 'lube', setLube)}
                         placeholder='Lubricated?'
                         search
                         selection
@@ -126,8 +146,8 @@ const UserInput = (props) => {
                 </label>
                 <label>
                     {lube === 'Custom' ?
-                        <Input customLube={customLube} value={customLube} placeholder='Custom K Value' onChange={(e, value) => setCustomLube(value.value)} />
-                        : null}
+                        <Input customLube={customLube} value={customLube} placeholder='Custom K Value' 
+                        onChange={(e, value) => updateQuery(value.value, 'customLube', setCustomLube)} /> : null}
                 </label>
             </form>
             <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />
