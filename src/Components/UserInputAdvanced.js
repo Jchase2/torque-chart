@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
 import ResultCompAdv from './ResultCompAdv';
-import boltSizeOptions from '../Static/boltSizeOptions';
+import boltSizeOptionsSAE from '../Static/boltSizeOptionsSAE';
+import boltSizeOptionsISO from '../Static/boltSizeOptionsISO';
 import standardOptions from '../Static/standardOptions';
 import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
@@ -21,7 +22,7 @@ const UserInput = (props) => {
     const [lube, setLube] = useContext(lubeContext);
     const [customLube, setCustomLube] = useContext(customLubeContext);
     const [threadsPerInch, setThreadsPerInch] = useContext(threadsPerInchContext);
-    
+
     // Setting up query string searching. 
     const { search } = useLocation()
     const searchParams = new URLSearchParams(search);
@@ -65,12 +66,12 @@ const UserInput = (props) => {
 
     // If values are already in the store, update the query string with 
     // said values. 
-    if(standard){updateQuery(standard, 'standard', setStandard)};
-    if(grade){updateQuery(grade, 'grade', setGrade)};
-    if(size){updateQuery(size, 'size', setSize)};
-    if(lube){updateQuery(lube, 'lube', setLube)};
-    if(customLube){updateQuery(customLube, 'customLube', setCustomLube)}
-    if(threadsPerInch){updateQuery(threadsPerInch, 'threadsPerInch', setThreadsPerInch)};
+    if (standard) { updateQuery(standard, 'standard', setStandard) };
+    if (grade) { updateQuery(grade, 'grade', setGrade) };
+    if (size) { updateQuery(size, 'size', setSize) };
+    if (lube) { updateQuery(lube, 'lube', setLube) };
+    if (customLube) { updateQuery(customLube, 'customLube', setCustomLube) }
+    if (threadsPerInch) { updateQuery(threadsPerInch, 'threadsPerInch', setThreadsPerInch) };
 
     return (
         <div>
@@ -128,16 +129,30 @@ const UserInput = (props) => {
                                     </Dropdown>
                                 </label>
                 }
-                <label>
-                    <Dropdown
-                        value={size}
-                        onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
-                        placeholder='Select Bolt Size'
-                        search
-                        selection
-                        options={boltSizeOptions}
-                    />
-                </label>
+                {
+                    standard === 'SAE' ?
+                        <label>
+                            <Dropdown
+                                value={size}
+                                onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
+                                placeholder='Select Bolt Size'
+                                search
+                                selection
+                                options={boltSizeOptionsSAE}
+                            />
+                        </label>
+                        :
+                        <label>
+                            <Dropdown
+                                value={size}
+                                onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
+                                placeholder='Select Bolt Size'
+                                search
+                                selection
+                                options={boltSizeOptionsISO}
+                            />
+                        </label>
+                }
                 <label>
                     <Dropdown
                         value={lube}

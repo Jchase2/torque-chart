@@ -4,6 +4,10 @@ import '../App.css';
 const ResultCompAdv = (props) => {
     let result = null;
 
+    const mmToInch = (mmValue) => {
+        return mmValue / 25.4;
+    }
+
     const threadTensileStress = () => {
         return (Math.PI / 4) * Math.pow((parseFloat(props.size) - (0.938194 * (1 / parseFloat(props.threadsPerInch)))), 2)
     }

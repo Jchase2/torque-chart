@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Dropdown, Message, Input } from 'semantic-ui-react';
 import ResultComp from './ResultComp';
-import boltSizeOptions from '../Static/boltSizeOptions';
+import boltSizeOptionsSAE from '../Static/boltSizeOptionsSAE';
+import boltSizeOptionsISO from '../Static/boltSizeOptionsISO';
 import standardOptions from '../Static/standardOptions';
 import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
@@ -32,14 +33,14 @@ const UserInput = (props) => {
     const threadingURL = searchParams.get('threading');
     const lubeURL = searchParams.get('lube');
     const customLubeURL = searchParams.get('customLube');
-    
+
     // If query string exists, set those variables in the store. 
     if (standardURL) { setStandard(standardURL); }
-    if (gradeURL) { setGrade(gradeURL)};
-    if (sizeURL) { setSize(sizeURL)};
-    if (threadingURL) { setThreading(threadingURL)};
-    if (lubeURL) { setLube(lubeURL)};
-    if (customLubeURL) { setCustomLube(customLubeURL)};
+    if (gradeURL) { setGrade(gradeURL) };
+    if (sizeURL) { setSize(sizeURL) };
+    if (threadingURL) { setThreading(threadingURL) };
+    if (lubeURL) { setLube(lubeURL) };
+    if (customLubeURL) { setCustomLube(customLubeURL) };
 
     // Function for updating the query string. 
     const updateQuery = (value, queryName, updateMethod) => {
@@ -66,12 +67,12 @@ const UserInput = (props) => {
 
     // If values are already in the store, update the query string with 
     // said values. 
-    if(standard){updateQuery(standard, 'standard', setStandard)};
-    if(grade){updateQuery(grade, 'grade', setGrade)};
-    if(size){updateQuery(size, 'size', setSize)};
-    if(threading){updateQuery(threading, 'threading', setThreading)};
-    if(lube){updateQuery(lube, 'lube', setLube)};
-    if(customLube){updateQuery(customLube, 'customLube', setCustomLube)}
+    if (standard) { updateQuery(standard, 'standard', setStandard) };
+    if (grade) { updateQuery(grade, 'grade', setGrade) };
+    if (size) { updateQuery(size, 'size', setSize) };
+    if (threading) { updateQuery(threading, 'threading', setThreading) };
+    if (lube) { updateQuery(lube, 'lube', setLube) };
+    if (customLube) { updateQuery(customLube, 'customLube', setCustomLube) }
 
     return (
         <div>
@@ -79,7 +80,7 @@ const UserInput = (props) => {
                 <label>
                     <Dropdown
                         value={standard}
-                        onChange={(e, value) => updateQuery(value.value, 'standard', setStandard) }
+                        onChange={(e, value) => updateQuery(value.value, 'standard', setStandard)}
                         options={standardOptions}
                         placeholder='Select Standard'
                         selection
@@ -138,16 +139,31 @@ const UserInput = (props) => {
                         value={threading}
                     />
                 </label>
-                <label>
-                    <Dropdown
-                        onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
-                        placeholder='Select Bolt Size'
-                        search
-                        selection
-                        options={boltSizeOptions}
-                        value={size}
-                    />
-                </label>
+                {
+                    standard === 'SAE' ?
+                        <label>
+                            <Dropdown
+                                onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
+                                placeholder='Select Bolt Size'
+                                search
+                                selection
+                                options={boltSizeOptionsSAE}
+                                value={size}
+                            />
+                        </label>
+                        :
+                        <label>
+                            <Dropdown
+                                onChange={(e, value) => updateQuery(value.value, 'size', setSize)}
+                                placeholder='Select Bolt Size'
+                                search
+                                selection
+                                options={boltSizeOptionsISO}
+                                value={size}
+                            />
+                        </label>
+
+                }
                 <label>
                     <Dropdown
                         onChange={(e, value) => updateQuery(value.value, 'lube', setLube)}
@@ -160,8 +176,8 @@ const UserInput = (props) => {
                 </label>
                 <label>
                     {lube === 'Custom' ?
-                        <Input customLube={customLube} value={customLube} placeholder='Custom K Value' 
-                        onChange={(e, value) => updateQuery(value.value, 'customLube', setCustomLube)} /> : null}
+                        <Input customLube={customLube} value={customLube} placeholder='Custom K Value'
+                            onChange={(e, value) => updateQuery(value.value, 'customLube', setCustomLube)} /> : null}
                 </label>
             </form>
             <ResultComp grade={grade} standard={standard} size={size} threading={threading} lube={lube} />

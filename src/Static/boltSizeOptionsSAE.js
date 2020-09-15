@@ -1,4 +1,4 @@
-const boltSizeOptions = [
+const boltSizeOptionsSAE = [
     { key: 0, text: "#4", value: '0.1120'},
     { key: 1, text: '#6', value: '0.1380'},
     { key: 2, text: '#8', value: '0.1640'},
@@ -29,4 +29,4 @@ const boltSizeOptions = [
     { key: 27, text: '4 inches', value: '4' },
 ]
 
-export default boltSizeOptions;
+export default boltSizeOptionsSAE;
