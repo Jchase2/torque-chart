@@ -1,41 +1,70 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import threadPitchValues from '../Static/threadPitchValues';
+import {
+    standardContext, gradeContext, sizeContext, threadingContext,
+    lubeContext, customLubeContext
+} from './Store';
 import '../App.css';
 
 const ResultCompAdv = (props) => {
     let result = null;
+    // Context API / hooks store and variables. 
+    const [standard] = useContext(standardContext);
+    const [size] = useContext(sizeContext);
+    const [grade] = useContext(gradeContext);
 
-    const mmToInch = (mmValue) => {
-        return mmValue / 25.4;
+    const newtonToLbs = (nval) => {
+        return nval * 0.2248;
+    }
+    const mmToIn = (mmValue) => {
+        return mmValue * 0.0393701;
     }
 
+    // This is correct and working. 
     const threadTensileStress = () => {
-        return (Math.PI / 4) * Math.pow((parseFloat(props.size) - (0.938194 * (1 / parseFloat(props.threadsPerInch)))), 2)
+        if (standard === 'SAE') {
+            return (Math.PI / 4) * Math.pow((parseFloat(props.size) - (0.938194 * (1 / parseFloat(props.threadsPerInch)))), 2)
+        }
+        if (standard === 'ISO') {
+            console.log("Thread Tensile Stress: " + ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[size])), 2)))
+            return ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[size])), 2))
+        }
     }
+
     const calcClampForce = () => {
         let proofLoad = null;
-        if (props.grade === 'grade2') {
-            parseFloat(props.size) < .875 ? proofLoad = 55000 : proofLoad = 33000;
-        }
-        else if (props.grade === 'grade5') {
-            parseFloat(props.size) < 1.5 ? proofLoad = 85000 : proofLoad = 74000;
-        }
-        else if(props.grade === 'grade7'){
-            proofLoad = 105000;
+        if (standard === 'SAE') {
+            if (props.grade === 'grade2') {
+                parseFloat(props.size) < .875 ? proofLoad = 55000 : proofLoad = 33000;
+            }
+            else if (props.grade === 'grade5') {
+                parseFloat(props.size) < 1.5 ? proofLoad = 85000 : proofLoad = 74000;
+            }
+            else if (props.grade === 'grade7') {
+                proofLoad = 105000;
+            }
+            else {
+                proofLoad = 120000;
+            }
         }
         else {
-            proofLoad = 120000;
+            if (grade === 'grade8.8') {
+                proofLoad = newtonToLbs(8230);
+            }
         }
-        return (.75 * proofLoad * threadTensileStress());
+        console.log("Clamp Force Result: " + (.75 * proofLoad * threadTensileStress()))
+        if(props.standard === "SAE"){return (.75 * proofLoad * threadTensileStress());}
+        else return .75 * proofLoad;
     }
     const calcTorque = () => {
         let K = null;
         let D = null;
         let F = calcClampForce();
-        props.lube === 'Lubricated' ? K = 0.15 : props.lube === 'Dry' ?  K = 0.20 : K = props.customLube;
+        props.lube === 'Lubricated' ? K = 0.15 : props.lube === 'Dry' ? K = 0.20 : K = props.customLube;
         D = parseFloat(props.size);
-        return (K * D * F);
+        if(props.standard === "SAE"){return (K * D * F)} else return mmToIn(K * D * F);
     }
-    if (props.size && props.threadsPerInch) {
+    if (props.size) {
         result = calcTorque();
     }
     return (
