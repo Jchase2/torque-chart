@@ -17,3 +17,12 @@ good as a learning experience / practice experience after going through various 
 
 Basically, it stores user inputted dropdown / integers in a react context api store, and either calculates (advanced) 
 or accesses a large object (basic) to get the correct torque for your entered variables. 
+
+## To Do
+
+[*] I'll probably remove basic altogeather and simply let advanced calculate everything. 
+[*] Additional ISO bolt sizes, need to find more data for proofLoad and what not. 
+[*] Additional standards (ASTM? Others?) may be integrated in the future. 
+
+That's pretty much it for the app. Maybe I'll slap it on it's own domain and add an ad or something, 
+but we'll see. 
