@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import threadPitchValues from '../Static/threadPitchValues';
+import metricProofLoad from '../Static/metricProofLoad';
 import {
     standardContext, gradeContext, sizeContext, threadingContext,
     lubeContext, customLubeContext
@@ -48,12 +49,15 @@ const ResultCompAdv = (props) => {
             }
         }
         else {
+            let grade_num = props.grade.replace('grade', ''); 
             if (grade === 'grade8.8') {
-                proofLoad = newtonToLbs(8230);
+                if (metricProofLoad.coarse.class) {
+                    proofLoad = newtonToLbs(metricProofLoad.coarse.class[grade_num].diameter[size])
+                }
             }
         }
         console.log("Clamp Force Result: " + (.75 * proofLoad * threadTensileStress()))
-        if(props.standard === "SAE"){return (.75 * proofLoad * threadTensileStress());}
+        if (props.standard === "SAE") { return (.75 * proofLoad * threadTensileStress()); }
         else return .75 * proofLoad;
     }
     const calcTorque = () => {
@@ -62,7 +66,7 @@ const ResultCompAdv = (props) => {
         let F = calcClampForce();
         props.lube === 'Lubricated' ? K = 0.15 : props.lube === 'Dry' ? K = 0.20 : K = props.customLube;
         D = parseFloat(props.size);
-        if(props.standard === "SAE"){return (K * D * F)} else return mmToIn(K * D * F);
+        if (props.standard === "SAE") { return (K * D * F) } else return mmToIn(K * D * F);
     }
     if (props.size) {
         result = calcTorque();
