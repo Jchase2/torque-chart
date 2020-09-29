@@ -164,8 +164,10 @@ const UserInput = (props) => {
                     />
                 </label>
                 <label>
-                    <Input threadsPerInch={threadsPerInch} value={threadsPerInch}
-                        placeholder='Threads Per Inch' onChange={(e, value) => updateQuery(value.value, 'threadsPerInch', setThreadsPerInch)} />
+                    {standard === 'ISO' ? null : 
+                        <Input threadsPerInch={threadsPerInch} value={threadsPerInch}
+                            placeholder='Threads Per Inch' onChange={(e, value) => updateQuery(value.value, 'threadsPerInch', setThreadsPerInch)} />
+                    }
                 </label>
                 <label>
                     {lube === 'Custom' ?

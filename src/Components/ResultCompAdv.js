@@ -50,11 +50,9 @@ const ResultCompAdv = (props) => {
         }
         else {
             let grade_num = props.grade.replace('grade', ''); 
-            if (grade === 'grade8.8') {
                 if (metricProofLoad.coarse.class) {
                     proofLoad = newtonToLbs(metricProofLoad.coarse.class[grade_num].diameter[size])
                 }
-            }
         }
         console.log("Clamp Force Result: " + (.75 * proofLoad * threadTensileStress()))
         if (props.standard === "SAE") { return (.75 * proofLoad * threadTensileStress()); }

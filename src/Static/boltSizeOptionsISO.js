@@ -15,10 +15,6 @@ const boltSizeOptionsISO = [
     { key: 13, text: 'M24.00', value: '24.0' }, 
     { key: 14, text: 'M30.00', value: '30.0' }, 
     { key: 15, text: 'M36.00', value: '36.0' }, 
-    { key: 16, text: 'M42.00', value: '42.0' }, 
-    { key: 17, text: 'M48.00', value: '48.0' }, 
-    { key: 18, text: 'M56.00', value: '56.0' }, 
-    { key: 19, text: 'M64.00', value: '64.0' } 
 ]
 
 export default boltSizeOptionsISO;
