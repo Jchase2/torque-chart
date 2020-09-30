@@ -20,9 +20,10 @@ or accesses a large object (basic) to get the correct torque for your entered va
 
 ## To Do
 
-* I'll probably remove basic altogeather and simply let advanced calculate everything. 
 * Additional ISO bolt sizes, need to find more data for proofLoad and what not. 
 * Additional standards (ASTM? Others?) may be integrated in the future. 
+* Expand TPI dataset so custom values aren't strictly necessary for smaller / larger bolts. 
+* Code clean up. 
 
 That's pretty much it for the app. Maybe I'll slap it on it's own domain and add an ad or something, 
 but we'll see. 
