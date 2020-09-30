@@ -19,13 +19,8 @@ function App(props) {
   return (
     <Grid centered container padded="vertically">
       <div style={{padding: "250px 0 0 0"}}>
-        {!advanced ? <h1>Torque Calculator Basic </h1> : <h1> Torque Calculator Advanced </h1>}
-        <Route exact path="/" component={UserInput} />
-        <Route path="/advanced" component={UserInputAdvanced} />
-        <p></p>
-        {advanced ? <Link to="/"><Button onClick={handleClick} color='teal'>{advanced ? 'Basic' : 'Advanced'}</Button>
-        </Link> : <Link to="advanced"><Button onClick={handleClick} color='teal'>{!advanced ? 'Advanced' : 'Basic'}</Button>
-          </Link>}
+        <h1>Torque Calculator </h1> 
+        <Route exact path="/" component={UserInputAdvanced} />
       </div>
     </Grid>
   )

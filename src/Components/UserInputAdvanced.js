@@ -8,10 +8,11 @@ import standardOptions from '../Static/standardOptions';
 import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
+import threadingOptions from '../Static/threadingOptions';
 import lubricationOptionsAdv from '../Static/lubricationOptionsAdv';
 import {
     standardContext, gradeContext, sizeContext,
-    lubeContext, customLubeContext, threadsPerInchContext
+    lubeContext, customLubeContext, threadsPerInchContext, threadingContext
 } from './Store';
 
 const UserInput = (props) => {
@@ -22,6 +23,7 @@ const UserInput = (props) => {
     const [lube, setLube] = useContext(lubeContext);
     const [customLube, setCustomLube] = useContext(customLubeContext);
     const [threadsPerInch, setThreadsPerInch] = useContext(threadsPerInchContext);
+    const [threading, setThreading] = useContext(threadingContext);
 
     // Setting up query string searching. 
     const { search } = useLocation()
@@ -32,6 +34,8 @@ const UserInput = (props) => {
     const lubeURL = searchParams.get('lube');
     const customLubeURL = searchParams.get('customLube');
     const threadsPerInchURL = searchParams.get('threadsPerInch');
+    const threadingURL = searchParams.get('threading');
+
 
     // If query string exists, set those variables in the store. 
     if (standardURL) { setStandard(standardURL) };
@@ -40,12 +44,13 @@ const UserInput = (props) => {
     if (lubeURL) { setLube(lubeURL) };
     if (customLubeURL) { setCustomLube(customLubeURL) };
     if (threadsPerInchURL) { setThreadsPerInch(threadsPerInchURL) };
+    if (threadingURL) { setThreading(threadingURL) };
 
     // Function for updating the query string. 
     const updateQuery = (value, queryName, updateMethod) => {
         if (!search) {
             props.history.push({
-                pathname: '/advanced',
+                pathname: '/',
                 search: queryName + '=' + value
             })
         }
@@ -57,7 +62,7 @@ const UserInput = (props) => {
             var reg = new RegExp(replaceMe, "g");
             let qString = search.replace(reg, queryName + '=' + value);
             props.history.push({
-                pathname: '/advanced',
+                pathname: '/',
                 search: qString
             })
         }
@@ -130,6 +135,18 @@ const UserInput = (props) => {
                                 </label>
                 }
                 {
+                    standard === "ISO" ? null :
+                        <label>
+                            <Dropdown
+                                onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
+                                options={threadingOptions}
+                                placeholder='Select Threading'
+                                selection
+                                value={threading}
+                            />
+                        </label>
+                }
+                {
                     standard === 'SAE' ?
                         <label>
                             <Dropdown
@@ -164,10 +181,10 @@ const UserInput = (props) => {
                     />
                 </label>
                 <label>
-                    {standard === 'ISO' ? null : 
+                    {standard === 'ISO' ? null : threading === "custom" ?
                         <Input threadsPerInch={threadsPerInch} value={threadsPerInch}
                             placeholder='Threads Per Inch' onChange={(e, value) => updateQuery(value.value, 'threadsPerInch', setThreadsPerInch)} />
-                    }
+                        : null}
                 </label>
                 <label>
                     {lube === 'Custom' ?
