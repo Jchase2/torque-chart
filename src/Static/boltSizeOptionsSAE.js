@@ -1,8 +1,8 @@
 const boltSizeOptionsSAE = [
-    { key: 0, text: "#4", value: '0.1120'},
-    { key: 1, text: '#6', value: '0.1380'},
-    { key: 2, text: '#8', value: '0.1640'},
-    { key: 3, text: '#10', value: '0.1900'},
+    { key: 0, text: "#4", value: '.112'},
+    { key: 1, text: '#6', value: '.138'},
+    { key: 2, text: '#8', value: '.164'},
+    { key: 3, text: '#10', value: '.19'},
     { key: 4, text: '1/4 inch', value: '.25'},
     { key: 5, text: '5/16 inch', value: '.3125' },
     { key: 6, text: '3/8 inch', value: '.375' },
