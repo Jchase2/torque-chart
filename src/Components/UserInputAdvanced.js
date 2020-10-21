@@ -134,18 +134,15 @@ const UserInput = (props) => {
                                     </Dropdown>
                                 </label>
                 }
-                {
-                    standard === "ISO" ? null :
-                        <label>
-                            <Dropdown
-                                onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
-                                options={threadingOptions}
-                                placeholder='Select Threading'
-                                selection
-                                value={threading}
-                            />
-                        </label>
-                }
+                <label>
+                    <Dropdown
+                        onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
+                        options={threadingOptions}
+                        placeholder='Select Threading'
+                        selection
+                        value={threading}
+                    />
+                </label>
                 {
                     standard === 'SAE' ?
                         <label>

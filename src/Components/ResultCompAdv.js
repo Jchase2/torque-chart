@@ -3,8 +3,7 @@ import threadPitchValues from '../Static/threadPitchValues';
 import metricProofLoad from '../Static/metricProofLoad';
 import tpiValues from '../Static/tpiValues';
 import {
-    standardContext, gradeContext, sizeContext, threadingContext,
-    lubeContext, customLubeContext, threadsPerInchContext
+    standardContext, gradeContext, sizeContext, threadingContext
 } from './Store';
 import '../App.css';
 
@@ -34,11 +33,14 @@ const ResultCompAdv = (props) => {
                 retValue = (Math.PI / 4) * Math.pow((parseFloat(props.size) - (0.938194 * (1 / parseFloat(props.threadsPerInch)))), 2)
             }
         }
-        if (standard === 'ISO') {
-            console.log("Thread Tensile Stress: " + ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[size])), 2)))
-            retValue = ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[size])), 2))
+        // This doesn't even do anything lol. 
+        /*
+        if (standard === 'ISO' && threading) {
+            console.log("Thread Tensile Stress: " + ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[threading][size])), 2)))
+            console.log("testing 123: " + threadPitchValues[threading][size]);
+            retValue = ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[threading][size])), 2))
         }
-        console.log('RetValue: ' + retValue);
+        */
         return retValue;
     }
 
@@ -59,12 +61,12 @@ const ResultCompAdv = (props) => {
             }
         }
         else {
+            // Regex to remove 'grade' before grade value.  
             let grade_num = props.grade.replace('grade', '');
-            if (metricProofLoad.coarse.class[grade_num]) {
-                proofLoad = newtonToLbs(metricProofLoad.coarse.class[grade_num].diameter[size])
-            }
+            console.log("Threading: " + threading);
+            console.log("proofLoad: " + metricProofLoad[threading].class[grade_num].diameter[size])
+            proofLoad = newtonToLbs(metricProofLoad[threading].class[grade_num].diameter[size])
         }
-        console.log("Clamp Force Result: " + (.75 * proofLoad * threadTensileStress()))
         if (props.standard === "SAE") { return (.75 * proofLoad * threadTensileStress()); }
         else return .75 * proofLoad;
     }
