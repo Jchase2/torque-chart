@@ -61,9 +61,9 @@ const ResultCompAdv = (props) => {
         else {
             // Regex to remove 'grade' before grade value.  
             let grade_num = props.grade.replace('grade', '');
-            console.log("Threading: " + threading);
-            console.log("proofLoad: " + metricProofLoad[threading].class[grade_num].diameter[size])
-            proofLoad = newtonToLbs(metricProofLoad[threading].class[grade_num].diameter[size])
+            if(metricProofLoad && metricProofLoad[threading]){
+                proofLoad = newtonToLbs(metricProofLoad[threading].class[grade_num].diameter[size])
+            }
         }
         if (props.standard === "SAE") { return (.75 * proofLoad * threadTensileStress()); }
         else return .75 * proofLoad;
