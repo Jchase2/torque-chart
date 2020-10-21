@@ -9,6 +9,7 @@ import boltOptionsSAE from '../Static/boltOptionsSAE';
 import boltOptionsISO from '../Static/boltOptionsISO';
 import boltOptionsASTM from '../Static/boltOptionsASTM';
 import threadingOptions from '../Static/threadingOptions';
+import threadingOptionsISO from '../Static/threadingOptionsISO';
 import lubricationOptionsAdv from '../Static/lubricationOptionsAdv';
 import {
     standardContext, gradeContext, sizeContext,
@@ -135,13 +136,24 @@ const UserInput = (props) => {
                                 </label>
                 }
                 <label>
-                    <Dropdown
-                        onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
-                        options={threadingOptions}
-                        placeholder='Select Threading'
-                        selection
-                        value={threading}
-                    />
+                    {
+                        standard === 'SAE' ?
+                            <Dropdown
+                                onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
+                                options={threadingOptions}
+                                placeholder='Select Threading'
+                                selection
+                                value={threading}
+                            />
+                            :
+                            <Dropdown
+                                onChange={(e, value) => updateQuery(value.value, 'threading', setThreading)}
+                                options={threadingOptionsISO}
+                                placeholder='Select Threading'
+                                selection
+                                value={threading}
+                            />
+                    }
                 </label>
                 {
                     standard === 'SAE' ?

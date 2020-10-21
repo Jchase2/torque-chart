@@ -4,6 +4,7 @@ export const standardContext = React.createContext();
 export const gradeContext = React.createContext();
 export const sizeContext = React.createContext();
 export const threadingContext = React.createContext();
+export const proofLoadContext = React.createContext();
 export const lubeContext = React.createContext();
 export const customLubeContext = React.createContext();
 export const threadsPerInchContext = React.createContext();

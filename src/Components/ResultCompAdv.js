@@ -34,10 +34,8 @@ const ResultCompAdv = (props) => {
             }
         }
         // This doesn't even do anything lol. 
-        /*
-        if (standard === 'ISO' && threading) {
+        /*if (standard === 'ISO' && threading) {
             console.log("Thread Tensile Stress: " + ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[threading][size])), 2)))
-            console.log("testing 123: " + threadPitchValues[threading][size]);
             retValue = ((Math.PI / 4) * Math.pow((size - (0.9382 * threadPitchValues[threading][size])), 2))
         }
         */
